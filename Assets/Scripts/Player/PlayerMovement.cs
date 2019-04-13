@@ -10,14 +10,14 @@ public class PlayerMovement : MonoBehaviour
     int floorMask;
     float camRayLength = 100f;
 
-    private void Awake()
+    void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         RaycastHit floorHit;
 
-        if(Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
+        if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
         {
             Vector3 playerToMouse = floorHit.point - transform.position;
             playerToMouse.y = 0f;
